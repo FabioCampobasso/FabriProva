@@ -32,60 +32,26 @@ async function shareImage() {
         // Mostra l'overlay di caricamento
         loadingOverlay.style.display = 'flex';
         
-        // Aspetta un momento per mostrare l'overlay
-        await new Promise(resolve => setTimeout(resolve, 100));
-        
-        // Nascondi il pulsante condividi
+        // Nascondi il pulsante condividi temporaneamente
         shareButton.style.display = 'none';
-        
-        // Salva i path SVG originali
-        const curvePath = document.getElementById('curve');
-        const placeholderPath = document.getElementById('placeholder-curve');
-        const originalCurvePath = curvePath.getAttribute('d');
-        const originalPlaceholderPath = placeholderPath.getAttribute('d');
-        
-        // Applica la classe HD per il ridimensionamento
-        container.classList.add('hd-screenshot');
-        
-        // Non modificare i path SVG per mantenere le proporzioni corrette
-        // I path rimangono gli stessi per evitare distorsioni
         
         // Aspetta che i font siano caricati
         await document.fonts.ready;
         
-        // Aspetta un momento extra per assicurarsi che tutto sia pronto
-        await new Promise(resolve => setTimeout(resolve, 500));
+        // Piccola pausa per assicurarsi che tutto sia pronto
+        await new Promise(resolve => setTimeout(resolve, 200));
         
-        // Crea lo screenshot con dimensioni precise HD
+        // Crea lo screenshot del container così com'è
         const canvas = await html2canvas(container, {
-            width: 1080,
-            height: 1920,
-            scale: 2, // Aumenta la scala per maggiore qualità
+            scale: 2, // Alta qualità
             useCORS: true,
-            allowTaint: true, // Permette font locali
+            allowTaint: true,
             backgroundColor: '#ffffff',
-            logging: false,
-            removeContainer: false,
-            onclone: function(clonedDoc) {
-                // Forza il font nel documento clonato
-                const clonedContainer = clonedDoc.getElementById('shareContainer');
-                if (clonedContainer) {
-                    // Applica lo stile direttamente agli elementi di testo
-                    const textElements = clonedContainer.querySelectorAll('.curved-text-element, .curved-placeholder-element');
-                    textElements.forEach(el => {
-                        el.style.fontFamily = "'Friz Quadrata', Arial, sans-serif";
-                    });
-                }
-            }
+            logging: false
         });
 
-        // Ripristina gli stili originali
-        container.classList.remove('hd-screenshot');
+        // Ripristina il pulsante
         shareButton.style.display = 'block';
-        
-        // Ripristina i path SVG originali
-        curvePath.setAttribute('d', originalCurvePath);
-        placeholderPath.setAttribute('d', originalPlaceholderPath);
         
         // Nascondi l'overlay
         loadingOverlay.style.display = 'none';

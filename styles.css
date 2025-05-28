@@ -162,55 +162,7 @@ body {
     display: none;
 }
 
-/* Classe per il ridimensionamento HD durante lo screenshot */
-.hd-screenshot {
-    width: 1080px !important;
-    height: 1920px !important;
-    max-width: none !important;
-    max-height: none !important;
-    position: fixed !important;
-    top: 0 !important;
-    left: 0 !important;
-    z-index: 9999 !important;
-    transform: none !important;
-}
-
-.hd-screenshot .image-container {
-    width: 100%;
-    height: 100%;
-}
-
-.hd-screenshot .editable-text {
-    font-size: 1.5rem !important;
-    top: 36% !important;
-    left: 50.3% !important;
-}
-
-.hd-screenshot .curved-text-display,
-.hd-screenshot .curved-placeholder {
-    top: 36% !important;
-    left: 50.3% !important;
-    width: 864px !important; /* 80% of 1080 */
-    height: 120px !important; /* Adattato al font */
-}
-
-.hd-screenshot .curved-text-element,
-.hd-screenshot .curved-placeholder-element {
-    font-size: 1.5rem !important;
-}
-
-/* Mantieni le proporzioni SVG corrette */
-.hd-screenshot .curved-text-svg,
-.hd-screenshot .curved-placeholder-svg {
-    width: 100% !important;
-    height: 100% !important;
-}
-
-.hd-screenshot .share-button {
-    font-size: 1rem !important;
-    top: 75% !important;
-    padding: 10px 20px !important;
-}
+/* Non servono più stili HD specifici - il container è già responsive */
 
 /* Responsive font sizing based on container width */
 @media (max-width: 768px) {
