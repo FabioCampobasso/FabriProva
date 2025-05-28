@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Immagine Editabile</title>
+    <link rel="preload" href="Friz Quadrata Bold.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="Friz Quadrata Bold.woff" as="font" type="font/woff" crossorigin>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container" id="shareContainer">
+        <div class="image-container">
+            <textarea class="editable-text" placeholder="" maxlength="14"></textarea>
+            <div class="curved-text-display">
+                <svg class="curved-text-svg" viewBox="0 0 300 100" preserveAspectRatio="xMidYMid meet">
+                    <defs>
+                        <path id="curve" d="M 40 50 Q 150 20 260 50" class="curved-text-path"/>
+                    </defs>
+                    <text class="curved-text-element">
+                        <textPath href="#curve" startOffset="50%"></textPath>
+                    </text>
+                </svg>
+            </div>
+            <div class="curved-placeholder">
+                <svg class="curved-placeholder-svg" viewBox="0 0 300 100" preserveAspectRatio="xMidYMid meet">
+                    <defs>
+                        <path id="placeholder-curve" d="M 40 50 Q 150 20 260 50"/>
+                    </defs>
+                    <text class="curved-placeholder-element uppercase">
+                        <textPath href="#placeholder-curve" startOffset="50%" class="uppercase">Scrivi qui</textPath>
+                    </text>
+                </svg>
+            </div>
+        </div>
+        <button class="share-button" onclick="shareImage()">Condividi</button>
+    </div>
+
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <p class="loading-text">ATTENDI CONDIVISIONE</p>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

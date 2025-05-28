@@ -1,0 +1,283 @@
+@font-face {
+    font-family: 'Friz Quadrata';
+    src: url('Friz Quadrata Bold.woff2') format('woff2'),
+         url('Friz Quadrata Bold.woff') format('woff'),
+         url('Friz Quadrata Bold.ttf') format('truetype'),
+         url('Friz Quadrata Bold.otf') format('opentype');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #f0f0f0;
+    overflow: auto;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 100vw;
+    height: 177.78vw; /* 16/9 ratio */
+    max-height: 100vh;
+    max-width: 56.25vh; /* 9/16 ratio */
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-image: url('img.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+.image-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.editable-text {
+    position: absolute;
+    top: 36%;
+    left: 50.3%;
+    transform: translate(-50%, -50%);
+    font-family: 'Friz Quadrata', Arial, sans-serif;
+    font-weight: bold;
+    font-size: 1.8vw;
+    color: white;
+    text-align: center;
+    background: none;
+    border: none;
+    outline: none;
+    resize: none;
+    width: 80%;
+    line-height: 1.2;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    opacity: 0;
+    text-transform: uppercase;
+}
+
+.curved-text-display {
+    position: absolute;
+    top: 36%;
+    left: 50.3%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    width: 80%;
+    height: 10%;
+}
+
+.curved-text-svg {
+    width: 100%;
+    height: 100%;
+}
+
+.curved-text-path {
+    fill: none;
+    stroke: none;
+}
+
+.curved-text-element {
+    font-family: 'Friz Quadrata', Arial, sans-serif;
+    font-weight: bold;
+    font-size: 1.8vw;
+    fill: white;
+    text-anchor: middle;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+    text-transform: uppercase;
+}
+
+.editable-text::placeholder {
+    color: rgba(255,255,255,0.7);
+    transform: perspective(100px) rotateX(-10deg);
+    display: block;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.share-button {
+    position: absolute;
+    top: 75%;
+    left: 50.3%;
+    transform: translateX(-50%);
+    background: #dc3545;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(220, 53, 69, 0.3);
+    font-family: 'Friz Quadrata', Arial, sans-serif;
+    text-transform: uppercase;
+}
+
+.share-button:hover {
+    background: #c82333;
+    box-shadow: 0 4px 12px rgba(220, 53, 69, 0.4);
+}
+
+.share-button:active {
+    box-shadow: 0 2px 6px rgba(220, 53, 69, 0.3);
+}
+
+.curved-placeholder {
+    position: absolute;
+    top: 36%;
+    left: 50.3%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    width: 80%;
+    height: 10%;
+}
+
+.curved-placeholder-svg {
+    width: 100%;
+    height: 100%;
+}
+
+.curved-placeholder-element {
+    font-family: 'Friz Quadrata', Arial, sans-serif;
+    font-weight: bold;
+    font-size: 1.8vw;
+    fill: white;
+    text-anchor: middle;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.7));
+    text-transform: uppercase;
+}
+
+.editable-text:focus ~ .curved-placeholder,
+.editable-text:not(:placeholder-shown) ~ .curved-placeholder {
+    display: none;
+}
+
+/* Classe per il ridimensionamento HD durante lo screenshot */
+.hd-screenshot {
+    width: 1080px !important;
+    height: 1920px !important;
+    max-width: none !important;
+    max-height: none !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    z-index: 9999 !important;
+    transform: none !important;
+}
+
+.hd-screenshot .image-container {
+    width: 100%;
+    height: 100%;
+}
+
+.hd-screenshot .editable-text {
+    font-size: 1.5rem !important;
+    top: 36% !important;
+    left: 50.3% !important;
+}
+
+.hd-screenshot .curved-text-display,
+.hd-screenshot .curved-placeholder {
+    top: 36% !important;
+    left: 50.3% !important;
+    width: 864px !important; /* 80% of 1080 */
+    height: 120px !important; /* Adattato al font */
+}
+
+.hd-screenshot .curved-text-element,
+.hd-screenshot .curved-placeholder-element {
+    font-size: 1.5rem !important;
+}
+
+/* Mantieni le proporzioni SVG corrette */
+.hd-screenshot .curved-text-svg,
+.hd-screenshot .curved-placeholder-svg {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+.hd-screenshot .share-button {
+    font-size: 1rem !important;
+    top: 75% !important;
+    padding: 10px 20px !important;
+}
+
+/* Responsive font sizing based on container width */
+@media (max-width: 768px) {
+    .curved-placeholder-element,
+    .curved-text-element,
+    .editable-text {
+        font-size: 5vw;
+    }
+    
+    .curved-placeholder-element {
+        fill: white;
+        filter: drop-shadow(0 3px 6px rgba(0,0,0,0.8));
+        stroke: rgba(0,0,0,0.3);
+        stroke-width: 0.5px;
+    }
+    
+    .curved-text-element {
+        filter: drop-shadow(0 3px 6px rgba(0,0,0,0.8));
+    }
+}
+
+/* For larger screens, cap the font size */
+@media (min-width: 1080px) {
+    .curved-placeholder-element,
+    .curved-text-element,
+    .editable-text {
+        font-size: 27px;
+    }
+}
+
+/* Loading overlay styles */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 1);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+}
+
+.loading-content {
+    text-align: center;
+}
+
+.loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-top-color: #dc3545;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 20px;
+}
+
+.loading-text {
+    font-family: 'Friz Quadrata', Arial, sans-serif;
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
